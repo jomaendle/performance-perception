@@ -1,0 +1,99 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
+        <title>Home - Performance Perception Test</title>
+        <link href="css/qtm-bs3.css" rel="stylesheet" type="text/css">
+
+        <style>
+            #main-content {
+                width: 760px;
+                margin: 0 auto;
+                margin-top: 70px;
+            }
+
+            .btn {
+                margin-top: 30px;
+            }
+
+            html, body {
+                background: rgb(242, 243, 244);
+                margin: 0;
+            }
+
+            h1 {
+                margin-bottom: 10px;
+            }
+
+            .panel {
+                margin-top: 20px;
+            }
+
+            #footer-span  {
+                margin: 50px 10px 15px 24px;
+                display: block;
+            }
+
+            h3 {
+                font-weight: 600;
+            }
+
+            #browser-information {
+                position: fixed;
+                top: 0;
+                width: 100%;
+                left: 0;
+                padding: 6px 10px;
+                background: #ffce00;
+                display: block;
+            }
+
+            button {
+                width: 220px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="main-content">
+            <div id="browser-information">
+                <b style="text-align: center">Your Browser is not supported. </b> </br>
+                This web app is designed for the Blink render engine, currently used by <a href="https://www.google.com/chrome/" target="_blank">Google Chrome</a> and
+                <a href="https://www.microsoftedgeinsider.com/en-us/" target="_blank">Microsoft Edge</a>.
+                To ensure the intended behaviour, please execute this test in one of these browsers. </br>
+            </div>
+            <h1 class="noBottomMargin">Performance Perception Tests</h1>
+            <div class="panel">
+                <div class="panel-body">
+                    <h3 style="margin-top: 0;"> Introduction</h3>
+                    Select one of the Ticket Shop implementations below. For further information about this project, have a look on the <a href="about.html">About</a> page.
+                    <i>Thank you for participating. </i></br></br>
+
+                    <h3 style="margin-bottom: 0;"> Test Selection</h3>
+                    <a href="TicketShopBase/index.html">
+                        <button type="button" class="btn btn-primary">No Loading Enhancement</button>
+                    </a>
+                    </br>
+                    <a href="Spinner/index.html">
+                        <button type="button" class="btn btn-primary">Loaders & Spinner</button>
+                    </a>
+                    </br>
+                    <a href="SkeletonScreen/index.html">
+                        <button type="button" class="btn btn-primary">Skeleton Screens</button>
+                    </a>
+                    </br>
+                    <a href="Multiple/index.html">
+                        <button type="button" class="btn btn-primary">Multiple Techniques</button>
+                    </a>
+                </div>
+                <span id="footer-span">&copy; 2019 Micro Focus. Only for testing purposes. </span>
+            </div>
+        </div>
+    <script src="js/BrowserDetetction.js"></script>
+    <script>
+        let isChrome = localStorage.getItem("isChrome");
+        console.log(isChrome);
+        if(isChrome === "true"){
+            document.getElementById("browser-information").style.display="none";
+        }
+    </script>
+    </body>
+</html>

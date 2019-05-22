@@ -1,0 +1,112 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <title>Checkout - Performance Perception Test</title>
+        <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css"/>
+        <link href="../css/qtm-bs3.css" rel="stylesheet" type="text/css">
+
+        <link href="../css/styles.css" rel="stylesheet" type="text/css">
+        <style>
+            .column {
+                max-width: unset;
+                width: unset;
+            }
+        </style>
+    </head>
+    <body onload="initView();">
+        <div id="header">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                  <div class="navbar-header">
+                    <a class="navbar-brand" href="index.html" role="tab" data-toggle="tab">WS</a>
+                  </div>
+                  <div class="navbar-body">
+                    <a href="" role="tab" data-toggle="tab" class="navbar-product-name navbar-text">Web Shop</a>
+                    <ul class="nav navbar-nav">
+                      <li class="active"><a href="" role="tab" data-toggle="tab" title="Workspace">Marketplace</a></li>
+                    </ul>
+                    <div class="nav navbar-nav navbar-right">
+                        <button type="button" class="btn btn-flat btn-secondary btn-icon-only" title="Search"><i class="qtm-font-icon qtm-icon-search--16"></i></button>
+                        <div class="dropdown">
+                            <button type="button" class="btn btn-secondary btn-flat btn-no-caret dropdown-toggle" id="dropdownmenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Personal settings">
+                              <i class="qtm-font-icon qtm-icon-user--16"></i><span>Johannes</span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownmenu1" data-toggle="dropdownmenu1">
+                                <li><a href="" role="tab" data-toggle="tab" title="My account">My account</a></li>
+                                <li><a href="" role="tab" data-toggle="tab" title="Change password">Change password</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="" role="tab" data-toggle="tab" title="Log out">Log out</a></li>
+                            </ul>
+                          </div>
+                        <button type="button" class="btn btn-flat btn-secondary btn-icon-only" title="Help"><i class="qtm-font-icon qtm-icon-help-button--16"></i></button>
+                    </div>
+                  </div>
+                </div>
+            </nav>
+        </div>
+        <div class="sidebar">
+            <div style="max-width: 280px;">
+                <ul class="nav nav-pills nav-stacked">
+                    <li data-toggle="tab" role="tab">
+                        <a href="../index.html">Home</a>
+                    </li>
+                    <li data-toggle="tab" role="tab" class="active">
+                        <a href="index.html" >Marketplace</a>
+                    </li>
+                    <li data-toggle="tab" role="tab">
+                        <a href="../about.html" onclick="setOriginLocation('TicketShopBase');">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="main">
+            <div class="page-columns">
+                <div  class="column">
+                    <h1 id="welcome-header" class="noBottomMargin" style="margin-top: 0;" ></h1>
+                    <h2 id="product-header" class="noBottomMargin" style="    margin-top: 10px;margin-bottom: 30px;" ></h2>
+
+                    <div class="panel-body" style="padding: 0;">
+                        <img id="itemImage" class="product-image" src=""/>
+                    </div>
+
+                   
+                    <button  type="button" class="btn btn-success" style="margin-top: 70px; float: right;" onclick="loadNextPage();">Finish</button>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="footer">
+            <span class="footer-span">&copy; 2019 Micro Focus. Only for testing purposes. </span>
+        </div>
+        <script type="text/javascript" src="../config.js"></script> 
+        <script>
+            /*
+             *  t0 = Time when DOM is loaded
+             *  t1 = Time when user clicks buy button
+             **/
+            let t0, t1;
+            let selectedItem = localStorage.getItem("currentItem").split(",");
+            let personalInformation = localStorage.getItem("personalInformation").split(",");
+
+            window.addEventListener('DOMContentLoaded', async function(event) {
+                t0 = performance.now();
+            });
+
+            function loadNextPage(){
+                t1 = performance.now();
+
+                saveMetricsToLocalStorage([t0, t1], "checkout")
+                redirectTo("../results.html");
+            }
+
+            function initView(){
+
+                document.getElementById("welcome-header").innerHTML = "Congratulations, " + personalInformation[0]; 
+                document.getElementById("product-header").innerHTML = "You just bought an " + selectedItem[0] + " for " + selectedItem[1] ; 
+
+                let itemImage = document.getElementById("itemImage").src = selectedItem[2];
+            }
+        </script>
+    </body>
+</html>

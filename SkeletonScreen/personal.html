@@ -1,0 +1,234 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <title>Personal Information - Performance Perception Test</title>
+        <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css"/>
+        <link href="../css/qtm-bs3.css" rel="stylesheet" type="text/css">
+        <link href="../css/qtm-font-icons.css" rel="stylesheet" type="text/css">
+        <link href="../css/qtm-fonts.css" rel="stylesheet" type="text/css">
+        <link href="../css/qtm-text.css" rel="stylesheet" type="text/css">
+
+        <link href="../css/styles.css" rel="stylesheet" type="text/css">
+        <style>
+                #back-button {
+                    position: absolute;
+                    top: -60px;
+                    right: 30px;
+                }
+        </style>
+    </head>
+    <body onload="initView();">
+        <div id="header">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                  <div class="navbar-header">
+                    <a class="navbar-brand" href="index.html" role="tab" data-toggle="tab">WS</a>
+                  </div>
+                  <div class="navbar-body">
+                    <a href="" role="tab" data-toggle="tab" class="navbar-product-name navbar-text">Web Shop</a>
+                    <ul class="nav navbar-nav">
+                      <li class="active"><a href="" role="tab" data-toggle="tab" title="Workspace">Marketplace</a></li>
+                    </ul>
+                    <div class="nav navbar-nav navbar-right">
+                        <button type="button" class="btn btn-flat btn-secondary btn-icon-only" title="Search"><i class="qtm-font-icon qtm-icon-search--16"></i></button>
+                        <div class="dropdown">
+                            <button type="button" class="btn btn-secondary btn-flat btn-no-caret dropdown-toggle" id="dropdownmenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Personal settings">
+                              <i class="qtm-font-icon qtm-icon-user--16"></i><span>Johannes</span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownmenu1" data-toggle="dropdownmenu1">
+                                <li><a href="" role="tab" data-toggle="tab" title="My account">My account</a></li>
+                                <li><a href="" role="tab" data-toggle="tab" title="Change password">Change password</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="" role="tab" data-toggle="tab" title="Log out">Log out</a></li>
+                            </ul>
+                          </div>
+                        <button type="button" class="btn btn-flat btn-secondary btn-icon-only" title="Help"><i class="qtm-font-icon qtm-icon-help-button--16"></i></button>
+                    </div>
+                  </div>
+                </div>
+            </nav>
+        </div>
+        <div class="sidebar">
+            <div style="max-width: 280px;">
+                <ul class="nav nav-pills nav-stacked">
+                    <li data-toggle="tab" role="tab">
+                        <a href="../index.html">Home</a>
+                    </li>
+                    <li data-toggle="tab" role="tab" class="active">
+                        <a href="index.html" >Marketplace</a>
+                    </li>
+                    <li data-toggle="tab" role="tab">
+                        <a href="../about.html" onclick="setOriginLocation('TicketShopBase');">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="main" style="overflow: auto;">
+            <div class="back-btn">
+                <button type="button" class="btn btn-icon btn-icon-only" title="Refresh" onclick="redirectTo('details.html');"><i class="qtm-font-icon qtm-icon-back"></i>  Back</button>
+                <div class="price-drop-note" style="background: #FFC002; color: black">
+                        <span style="padding-left: 20px;">26 iPhones left</span>
+                </div>
+            </div>
+            <div id="formular">
+                <h2 class="noBottomMargin" style="margin-top: 0; margin-bottom: 20px; font-size: 32px;">Personal Information</h2>
+                <form class="form-horizontal ng-pristine ng-valid" style="max-width: 800px;">
+                    <span class="personal-sep-span">Personal</span>
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">
+                            <label for="name" title="Name">Name:</label>
+                        </div>
+                        <div class="col-sm-10 controls controls-inline">
+                            <input type="text" id="firstName" placeholder="First Name" onkeyup="validateInput();">
+                            <span> </span>
+                            <input type="text" id="lastName" placeholder="Last Name" onkeyup="validateInput();">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">
+                            <label for="inputEmail" title="Street">Email:</label>
+                        </div>
+                        <div class="col-sm-10 controls">
+                            <input type="email" id="inputEmail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$" placeholder="Email Address" onkeyup="validateInput();">
+                            <div id="tooltip" class="tooltip tooltip-danger bottom" role="tooltip">
+                                <div class="tooltip-arrow"></div>
+                                <div class="tooltip-inner">
+                                    Invalid email address
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="personal-sep-span" style="margin-top: 60px;">Address</span>
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">
+                            <label for="inputStreet" title="Street">Street:</label>
+                        </div>
+                        <div class="col-sm-10 controls">
+                            <input type="text" id="inputStreet" placeholder="Street" onkeyup="validateInput();">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">
+                            <label for="inputCity" title="City">City:</label>
+                        </div>
+                        <div class="col-sm-10 controls">
+                            <input type="text" id="inputCity" placeholder="City" onkeyup="validateInput();">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">
+                            <label for="inputCountry" title="Country">Country:</label>
+
+                        </div>
+                        <div class="col-sm-10 controls">
+                            <input type="text" id="inputCountry" placeholder="Country" onkeyup="validateInput();">
+                        </div>
+                    </div>
+                    <span class="personal-sep-span" style="margin-top: 60px;">Payment</span>
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">
+                            <label for="inputCreditName" title="Street">Card Holder:</label>
+                        </div>
+                        <div class="col-sm-10 controls">
+                            <input type="text" id="inputCreditName" placeholder="Credit Card Holder" onkeyup="validateInput();">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">
+                            <label for="inputCardNumber" title="City">Card Number:</label>
+                        </div>
+                        <div class="col-sm-10 controls">
+                            <input type="text"  pattern="[0-9]*" id="inputCardNumber" placeholder="Credit Card Number" onkeyup="validateInput();">
+                            <div id="tooltipCardNumber" class="tooltip tooltip-danger bottom" role="tooltip">
+                                <div class="tooltip-arrow"></div>
+                                <div class="tooltip-inner">
+                                    Only numbers allowed
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button id="confirm-button" type="button" class="btn btn-primary" disabled="disabled" onclick="savePersonalInformation();">Confirm</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="footer">
+            <span class="footer-span">&copy; 2019 Micro Focus. Only for testing purposes. </span>
+        </div>
+        <script type="text/javascript" src="../config.js"></script> 
+        <script>
+
+            /**
+             *  t0 = Time when DOM is loaded
+             *  t1 = Time when user clicks confirm button
+             *  m0 = Amount of clicks done by user on button "Confirm"
+            */
+
+            let t0, t1, m0 = 0;
+
+            let inputFields = ["firstName", "lastName", "inputEmail", "inputStreet", "inputCity", "inputCountry", "inputCreditName", "inputCardNumber"];
+            let isInputValid = true;
+
+            window.addEventListener('DOMContentLoaded', (event) => {
+                t0 = performance.now();
+            });
+
+            function initView(){
+                let personalInformation = localStorage.getItem("personalInformation"); 
+                
+                if(personalInformation !== null && personalInformation !== ""){
+                    let arr = personalInformation.split(",");
+
+                    for(let i =0; i<inputFields.length; i++){
+                        document.getElementById(inputFields[i]).value = arr[i];
+                    }
+                }
+                validateInput();
+            }
+
+            function validateInput(){
+                isInputValid=true;
+                document.getElementById("tooltip").style.display="none";
+                document.getElementById("tooltipCardNumber").style.display="none";
+                inputFields.forEach((e) => {
+                    if(document.getElementById(e).value.length < 1){
+                        isInputValid = false;
+                    }
+                })
+
+                if(!document.getElementById("inputEmail").validity.valid){
+                    document.getElementById("tooltip").style.display="contents";
+                    isInputValid=false;
+                }
+
+                if(!document.getElementById("inputCardNumber").validity.valid){
+                    document.getElementById("tooltipCardNumber").style.display="contents";
+                    isInputValid=false;
+                }
+
+                if(isInputValid){
+                    document.getElementById("confirm-button").removeAttribute("disabled")
+                }
+                
+            }
+
+            function savePersonalInformation() {
+                m0++;
+                t1 = performance.now();
+                let personalInformation = [];
+               
+
+                inputFields.forEach((e) => {
+                    personalInformation.push(document.getElementById(e).value);
+                })
+
+                localStorage.setItem("personalInformation", personalInformation);
+
+                saveMetricsToLocalStorage([t0, t1, m0], "personal");
+                redirectTo("confirm.html");
+            }
+
+            
+        </script>>
+    </body>
+</html>

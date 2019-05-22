@@ -1,0 +1,124 @@
+<html>
+    <head lang="de">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
+        <link href="css/qtm-bs3.css" rel="stylesheet" type="text/css">
+        <link href="css/qtm-font-icons.css" rel="stylesheet" type="text/css">
+        <link href="css/qtm-fonts.css" rel="stylesheet" type="text/css">
+        <link href="css/qtm-text.css" rel="stylesheet" type="text/css">
+        <link href="node_modules/@micro-focus/quantum-ux-bootstrap/dist/bootstrap3/css/navigation/pills/qtm-bs3-pills.css" rel="stylesheet" type="text/css">
+
+        <link href="TicketShopBase/styles.css" rel="stylesheet" type="text/css">
+
+    </head>
+    <body onload="init();">
+        <div id="header">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                  <div class="navbar-header">
+                    <a class="navbar-brand" href="index.html" role="tab" data-toggle="tab">WS</a>
+                  </div>
+                  <div class="navbar-body">
+                    <a href="" role="tab" data-toggle="tab" class="navbar-product-name navbar-text">Web Shop</a>
+                    <ul class="nav navbar-nav">
+                      <li class="active"><a href="" role="tab" data-toggle="tab" title="Workspace">Marketplace</a></li>
+                    </ul>
+                    <div class="nav navbar-nav navbar-right">
+                        <button type="button" class="btn btn-flat btn-secondary btn-icon-only" title="Search"><i class="qtm-font-icon qtm-icon-search--16"></i></button>
+                        <div class="dropdown">
+                            <button type="button" class="btn btn-secondary btn-flat btn-no-caret dropdown-toggle" id="dropdownmenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Personal settings">
+                              <i class="qtm-font-icon qtm-icon-user--16"></i><span>Johannes</span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownmenu1" data-toggle="dropdownmenu1">
+                                <li><a href="" role="tab" data-toggle="tab" title="My account">My account</a></li>
+                                <li><a href="" role="tab" data-toggle="tab" title="Change password">Change password</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="" role="tab" data-toggle="tab" title="Log out">Log out</a></li>
+                            </ul>
+                          </div>
+                        <button type="button" class="btn btn-flat btn-secondary btn-icon-only" title="Help" ><i class="qtm-font-icon qtm-icon-help-button--16"></i></button>
+                    </div>
+                  </div>
+                </div>
+            </nav>
+        </div>
+        <div class="sidebar">
+            <div style="max-width: 280px;">
+                <ul class="nav nav-pills nav-stacked">
+                    <li data-toggle="tab" role="tab">
+                        <a href="index.html">Home</a>
+                    </li>
+                    <li data-toggle="tab" role="tab" >
+                        <a id="marketplace" href="" >Marketplace</a>
+                    </li>
+                    <li data-toggle="tab" role="tab" class="active">
+                        <a href="">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="main" >
+            <div id="content" >
+                <div id="about-section">
+                    <h1 class="noBottomMargin about-header" style="margin-top: 0;" >About this project</h1>
+                    <h3 class="about-header">User Perceived Performance - Bachelor Theses</h3>
+                    <p>
+                        Developed by <a href="mailto: johannes.maendle@microfocus.com">Johannes Maendle</a> </br>
+                        Supervised by <a href="mailto: carsten.schlipf@microfocus.com">Carsten Schlipf</a> </br>
+                        May - Sep, 2019 </br>
+                        Boeblingen, Germany
+                        
+                    </p>
+                    <h3 class="about-header">Goal</h3>
+                    <p>
+                        The goal of this user test is to evaluate methods and techniques which improve user perceived performance in web applications. 
+                    </p>
+                    <h3 class="about-header">Requirements</h3>
+                    <p>
+                        The application should be solely based on static HTML-files, plain-CSS and Vanilla JavaScript in order to make the application easly accessible to all 
+                        potential testers. The usage of third-party frameworks could lead to set up overhead which should be avoided. Furthermore, this application should be 
+                        accessible within the Micro Focus-Intranet. Therefore this site is being hosted on the internal GitHub Enterprise to achieve this. Additionally, GitHub Pages 
+                        supports serving only static HTML pages. However, this requirement has already been regarded with respect to the first point.
+                    </p>
+                    <h3 class="about-header">Set Up</h3>
+                    <p>
+                        A simple web shop selling certain products is used to execute this test operation. The web shop is delievered in different versions, each one containing different
+                        approaches in order to affect the perceived performance of the application by the user. 
+                        <ol>
+                            <li><b>No Loading Enhancement</b> The site operates with set loading times but without any visual methods to improve the perceived performance</li>
+                            <li><b>Loaders and Spinners</b> Like the previous, this site operates with set loading times. However it contains simple loadig animations, such as loaders and spinners,
+                                including the Micro Focus-loading spinner.
+                            </li>
+                            <li><b>Skeleton Screens</b> This site operates with set loading times including skeleton screens. While loading, it shows shapes or placeholder of the content that is to be loaded.
+                                Additionally, it introduces an animation for the check-out process, which is the longest procedure during the process.
+                            </li>
+                            <li><b>Combination of Methods</b> As a final test page, this version contains various techniques based on defined criteria on when to use which improvement.  
+                                This pages includes Skeleton Screens, Spinners but also Page Transitions realized through sliders.
+                            </li>
+                        </ol>
+                    </p>
+                    <h3 class="about-header" >Execution</h3>
+                    <p style="margin-bottom: 50px;">
+                        For test execution, each participant receives the task to buy an iPhone X in the provided web shop. During the test, several anonymous, technical data is collected 
+                        in order to determine the user satisfaction and perceived performance. However, perceived performance cannot be identified by tehcnical measures only, since
+                        perception is subjective and therefore different from person to person. This means that after each test execution every participant is subject to answer a 
+                        predefined questionnaire to evaluate the effectiveness of the used methods.
+                    </p>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+                <span class="footer-span">&copy; 2019 Micro Focus. Only for testing purposes. </span>
+        </div>
+        <script type="text/javascript" src="config.js"></script> 
+        <script>
+          function init(){
+              document.getElementById("marketplace").href=localStorage.getItem("origin")+"/index.html";
+          }
+
+        </script>
+    </body>
+</html>

@@ -1,0 +1,147 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <title>Loading... - Performance Perception Test</title>
+        <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css"/>
+        <link href="../css/qtm-bs3.css" rel="stylesheet" type="text/css">
+        <link href="../css/qtm-font-icons.css" rel="stylesheet" type="text/css">
+        <link href="../css/qtm-fonts.css" rel="stylesheet" type="text/css">
+        <link href="../css/qtm-text.css" rel="stylesheet" type="text/css">
+        <link href="../node_modules/@micro-focus/quantum-ux-bootstrap/dist/bootstrap3/css/navigation/pills/qtm-bs3-pills.css" rel="stylesheet" type="text/css">
+
+        <link href="../css/styles.css" rel="stylesheet" type="text/css">
+        <link href="animations.css" rel="stylesheet" type="text/css">
+
+        <style>
+
+            #load-text-2{
+                display: none;
+            }
+
+            #load-text-3{
+                display: none;
+            }
+
+
+        </style>
+    </head>
+    <body>
+        <div id="header">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                  <div class="navbar-header">
+                    <a class="navbar-brand" href="index.html" role="tab" data-toggle="tab">WS</a>
+                  </div>
+                  <div class="navbar-body">
+                    <a href="" role="tab" data-toggle="tab" class="navbar-product-name navbar-text">Web Shop</a>
+                    <ul class="nav navbar-nav">
+                      <li class="active"><a href="" role="tab" data-toggle="tab" title="Workspace">Marketplace</a></li>
+                    </ul>
+                    <div class="nav navbar-nav navbar-right">
+                        <button type="button" class="btn btn-flat btn-secondary btn-icon-only" title="Search"><i class="qtm-font-icon qtm-icon-search--16"></i></button>
+                        <div class="dropdown">
+                            <button type="button" class="btn btn-secondary btn-flat btn-no-caret dropdown-toggle" id="dropdownmenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Personal settings">
+                              <i class="qtm-font-icon qtm-icon-user--16"></i><span>Johannes</span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownmenu1" data-toggle="dropdownmenu1">
+                                <li><a href="" role="tab" data-toggle="tab" title="My account">My account</a></li>
+                                <li><a href="" role="tab" data-toggle="tab" title="Change password">Change password</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="" role="tab" data-toggle="tab" title="Log out">Log out</a></li>
+                            </ul>
+                          </div>
+                        <button type="button" class="btn btn-flat btn-secondary btn-icon-only" title="Help" ><i class="qtm-font-icon qtm-icon-help-button--16"></i></button>
+                    </div>
+                  </div>
+                </div>
+            </nav>
+        </div>
+        <div class="sidebar">
+            <div style="max-width: 280px;">
+                <ul class="nav nav-pills nav-stacked">
+                    <li data-toggle="tab" role="tab">
+                        <a href="../index.html">Home</a>
+                    </li>
+                    <li data-toggle="tab" role="tab" class="active">
+                        <a href="index.html" >Marketplace</a>
+                    </li>
+                    <li data-toggle="tab" role="tab">
+                        <a href="../about.html">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="main" >
+                <div class="boxes">
+                        <div class="box">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                        <div class="box">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                        <div class="box">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                        <div class="box">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <div id="loading-text">
+                        <span id="load-text-1"  class="animate-flicker">Checking product availability</span>
+                        <span id="load-text-2"  class="animate-flicker">Checking payment information</span>
+                        <span id="load-text-3"  class="animate-flicker">Checking address validity</span>
+                            <!--div id="load-text" class="saving"><span class="load-dot">.</span><span class="load-dot">.</span><span class="load-dot">.</span></div-->
+                    </div>
+        </div>
+        <div class="footer">
+                <span class="footer-span">&copy; 2019 Micro Focus. Only for testing purposes. </span>
+        </div>
+        <script type="text/javascript" src="../config.js"></script> 
+        <script>
+            let firstText =  document.getElementById("load-text-1");
+            let secondText =  document.getElementById("load-text-2");
+            let thirdText =  document.getElementById("load-text-3");
+            
+            window.addEventListener('DOMContentLoaded', (event) => {
+                console.time("a");
+
+                firstText.addEventListener("animationiteration", function(){
+
+                        firstText.style.display="none";
+                        secondText.style.display="block";
+                     
+                    
+                })
+
+                secondText.addEventListener("animationiteration", function(){
+                   
+                        secondText.style.display="none";
+                        thirdText.style.display="block";
+                
+                   
+                })
+
+                thirdText.addEventListener("animationiteration", function(){
+                 
+                        thirdText.style.display="none";
+                        console.timeEnd("a")
+                    
+                })
+            })
+           
+
+        </script>
+    </body>
+</html>

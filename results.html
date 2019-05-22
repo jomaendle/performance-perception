@@ -1,0 +1,68 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
+        <title>Results - Performance Perception Test</title>
+        <link href="css/qtm-bs3.css" rel="stylesheet" type="text/css">
+
+      
+        <style>
+            #main-content {
+                width: 760px;
+                margin: 0 auto;
+                margin-top: 60px;
+            }
+
+            .btn {
+                margin-top: 30px;
+            }
+
+            html, body {
+                background: rgb(242, 243, 244);
+                margin: 0;
+            }
+
+            h1 {
+                margin-bottom: 10px;
+            }
+
+            .panel {
+                margin-top: 20px;
+            }
+            
+            #results{
+                margin-top: 20px;
+                line-height: 22px;
+            }
+
+            </style>
+    </head>
+    <body>
+        <div id="main-content">
+            <h1 class="noBottomMargin">Performance Perception Test Results</h1>
+            <div class="panel">
+                <div class="panel-body">
+                   Below are the technical results of the test. Please copy them into a textfile and send them to
+                   <a href="mailto: johannes.maendle@microfocus.com">Johannes Maendle</a>.
+                   <p id="results">
+
+                   </p>
+                   <a href="index.html">
+                       <button type="button" class="btn btn-primary">Back to main selection</button>
+                   </a>
+                </div>
+            </div>
+        </div>
+        <script>
+            let pages = ["index", "details", "personal", "confirm", "checkout"];
+
+            document.getElementById("results");
+            pages.forEach((e) => {
+                let arr =  localStorage.getItem(e+"Measures").split(",");
+                    results.innerHTML += e+ ": " + arr + "</br>"
+               
+            })
+
+
+        </script>
+    </body>
+</html>

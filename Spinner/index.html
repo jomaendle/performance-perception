@@ -1,0 +1,247 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <title>Marketplace  - Performance Perception Test</title>
+        <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css"/>
+        <link href="../css/qtm-bs3.css" rel="stylesheet" type="text/css">
+        <link href="../css/qtm-font-icons.css" rel="stylesheet" type="text/css">
+        <link href="../css/qtm-fonts.css" rel="stylesheet" type="text/css">
+        <link href="../css/qtm-text.css" rel="stylesheet" type="text/css">
+        <link href="../node_modules/@micro-focus/quantum-ux-bootstrap/dist/bootstrap3/css/navigation/pills/qtm-bs3-pills.css" rel="stylesheet" type="text/css">
+
+        <link href="../css/styles.css" rel="stylesheet" type="text/css">
+
+        <style>
+            #loading-spinner {
+                display: block;
+                position: absolute;
+                margin: auto;
+                left: 50%;
+                top: 40%;
+            }
+
+            #content {
+                display: none;
+            }
+
+            .panel-title {
+                visibility: hidden;
+            }
+
+            .product-price {
+                visibility: hidden;
+            }
+
+            .product-image {
+                visibility: hidden;
+                animation: none;
+            }
+
+            .qtm-loader {
+                position: absolute;
+                bottom: 100px;
+                left: 0;
+                right: 0;
+                margin: 0 auto;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div id="header">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                  <div class="navbar-header">
+                    <a class="navbar-brand" href="index.html" role="tab" data-toggle="tab">WS</a>
+                  </div>
+                  <div class="navbar-body">
+                    <a href="" role="tab" data-toggle="tab" class="navbar-product-name navbar-text">Web Shop</a>
+                    <ul class="nav navbar-nav">
+                      <li class="active"><a href="" role="tab" data-toggle="tab" title="Workspace">Marketplace</a></li>
+                    </ul>
+                    <div class="nav navbar-nav navbar-right">
+                        <button type="button" class="btn btn-flat btn-secondary btn-icon-only" title="Search"><i class="qtm-font-icon qtm-icon-search--16"></i></button>
+                        <div class="dropdown">
+                            <button type="button" class="btn btn-secondary btn-flat btn-no-caret dropdown-toggle" id="dropdownmenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Personal settings">
+                              <i class="qtm-font-icon qtm-icon-user--16"></i><span>Johannes</span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownmenu1" data-toggle="dropdownmenu1">
+                                <li><a href="" role="tab" data-toggle="tab" title="My account">My account</a></li>
+                                <li><a href="" role="tab" data-toggle="tab" title="Change password">Change password</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="" role="tab" data-toggle="tab" title="Log out">Log out</a></li>
+                            </ul>
+                          </div>
+                        <button type="button" class="btn btn-flat btn-secondary btn-icon-only" title="Help" ><i class="qtm-font-icon qtm-icon-help-button--16"></i></button>
+                    </div>
+                  </div>
+                </div>
+            </nav>
+        </div>
+        <div class="sidebar">
+            <div style="max-width: 280px;">
+                <ul class="nav nav-pills nav-stacked">
+                    <li data-toggle="tab" role="tab">
+                        <a href="../index.html">Home</a>
+                    </li>
+                    <li data-toggle="tab" role="tab" class="active">
+                        <a href="index.html" >Marketplace</a>
+                    </li>
+                    <li data-toggle="tab" role="tab">
+                        <a href="../about.html" onclick="setOriginLocation('TicketShopSpinner');">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="main" >
+            <div id="loading-spinner" class="busy-window">
+                <div  class="loading-spinner  loading-spinner-lg"></div>
+            </div>
+            <div id="content" >
+                <div id="box">
+                    <div class="panel-wrapper">
+                        <div id="ExamplePanel1" class="panel panel-primary panel-linked" onclick="handleItemClick(this);">
+                            <div class="panel-heading">
+                                <h2 class="panel-title">iPhone XR</h2>
+                            </div>
+                            <div class="panel-body">
+                                <img class="product-image" src="../assets/iphone-xr-coral-select-201809.png"/>
+                                <span class="product-price">$749</span>
+                                <div class="qtm-loader"></div>
+                            </div>
+                            
+                        </div>  
+                    </div>
+                    <div class="panel-wrapper">
+                        <div id="ExamplePanel2" class="panel panel-primary panel-linked" onclick="handleItemClick(this);">
+                            <div class="panel-heading">
+                                <h2 class="panel-title">iPhone XS</h2>
+                            </div>
+                            <div class="panel-body">
+                                <img class="product-image" src="../assets/iphone-xs-space-select-2018.png"/>
+                                <span class="product-price">$999</span>
+                                <div class="qtm-loader"></div>
+                            </div>
+                        </div>   
+                    </div>
+                    <div class="panel-wrapper">
+                        <div id="ExamplePanel3" class="panel panel-primary panel-linked" onclick="handleItemClick(this);" >
+                            <div class="panel-heading">
+                                <h2 class="panel-title">iPhone 8</h2>
+                            </div>
+                            <div class="panel-body">
+                                <img class="product-image" src="../assets/iphone8-spgray-select-2018.png"/>
+                                <span class="product-price">$599</span>
+                                <div class="qtm-loader"></div>
+                            </div>
+                        </div> 
+                    </div>
+                    <div class="panel-wrapper">
+                        <div id="ExamplePanel4" class="panel panel-primary panel-linked" onclick="handleItemClick(this);">
+                            <div class="panel-heading">
+                                <h2 class="panel-title">iPhone 7</h2>
+                            </div>
+                            <div class="panel-body">
+                                <img class="product-image" src="../assets/iphone7-plus-silver-select-2016.png"/>
+                                <span class="product-price">$449</span>
+                                <div class="qtm-loader"></div>
+                            </div>
+                        </div>   
+                    </div> 
+                    <div class="panel-wrapper">
+                        <div id="ExamplePanel6" class="panel panel-primary panel-linked" onclick="handleItemClick(this);">
+                            <div class="panel-heading">
+                                <h2 class="panel-title">iPhone XS MAX</h2>
+                            </div>
+                            <div class="panel-body">
+                                <img class="product-image" src="../assets/iphone-xs-max-gold-select-2018.png"/>
+                                <span class="product-price">$1099</span>
+                                <div class="qtm-loader"></div>
+                            </div>
+                        </div>   
+                    </div>    
+                    <div class="panel-wrapper">
+                        <div id="ExamplePanel7" class="panel panel-primary panel-linked" onclick="handleItemClick(this);">
+                            <div class="panel-heading">
+                                <h2 class="panel-title">iPhone X</h2>
+                            </div>
+                            <div class="panel-body">
+                                <img class="product-image" style="max-height: 250px;" src="../assets/1505918647iphone-x.png"/>
+                                <span class="product-price">$899</span>
+                                <div class="qtm-loader"></div>
+                            </div>
+                        </div>   
+                    </div>                  
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+                <span class="footer-span">&copy; 2019 Micro Focus. Only for testing purposes. </span>
+        </div>
+        <script type="text/javascript" src="../config.js"></script> 
+        <script>
+
+            /**
+             *  t0 = Time when DOM is loaded
+             *  t1 = Time when content is fully avilable
+             *  t2 = Time when user clicked on item
+            */
+
+            localStorage.removeItem("personalInformation");
+            let t0, t1, t2;
+
+            window.addEventListener('DOMContentLoaded', (event) => {
+                t0 = performance.now();
+                loadElements();
+            });
+
+            function handleItemClick(e) {
+                t2 = performance.now();
+             
+                let selectedItem = [];
+
+                selectedItem.push(e.childNodes[1].innerText);
+                selectedItem.push(e.childNodes[3].innerText);
+                selectedItem.push(e.childNodes[3].childNodes[1].src);
+
+                localStorage.setItem("currentItem", selectedItem);
+
+                setTimeout(() => {
+                    saveMetricsToLocalStorage([t0, t1, t2], "index");
+                    redirectTo("details.html");
+                }, indexTimes.transitionToDetails);
+            }
+
+            function loadElements(){
+                setTimeout(() => {
+                    document.getElementById("content").style.display="block";
+                    document.getElementById("loading-spinner").style.display="none";
+
+                    loadText();
+                }, indexTimes.initialDelay);
+            }
+
+            function loadText(){
+                setTimeout(async function() { 
+                    let titles = document.getElementsByClassName("panel-title");
+                    Array.from(titles).forEach(element => {
+                        element.style.visibility = "visible";
+                    });
+
+                    let prices = document.getElementsByClassName("product-price ");
+                    Array.from(prices).forEach(element => {
+                        element.style.visibility = "visible";
+                    });
+
+                    t1 = await loadImages();
+                    let loaders = document.getElementsByClassName("qtm-loader");
+                    Array.from(loaders).forEach(element => {
+                        element.style.display = "none";
+                    });
+                    
+                }, indexTimes.textDelay);
+            }
+
+        </script>
+    </body>
+</html>
