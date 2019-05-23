@@ -1,5 +1,7 @@
-<html>
-    <head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
         <title>Product Details - Performance Perception Test</title>
         <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css"/>
@@ -79,6 +81,10 @@
 
             #buy-button {
                 bottom: 0;
+            }
+
+            #confirm-information-column{
+                padding-bottom: 50px;
             }
 
         </style>
@@ -166,49 +172,51 @@
                         </div>
                     </div>
                 </div>
-                <div id="confirm-information-column" class="column" >
-                    <h2 class="noBottomMargin" style="padding-left: 30px;">Product Information</h2>
-                    <div id="skeleton-description-wrapper" class="product-information">
-                        <div class="text-input__loading--line"></div>
-                        <div class="text-input__loading--line"></div>
-                        <div class="text-input__loading--line"></div>
-                        <div class="text-input__loading--line"></div>
-                        <div class="text-input__loading--line"></div>
-                        </br>
-                        <div class="text-input__loading--line"></div>
-                        <div class="text-input__loading--line"></div>
-                        <div class="text-input__loading--line"></div>
-                        <div class="text-input__loading--line"></div>
-                        <div class="text-input__loading--line"></div>
-                        </br>
-                        <div class="text-input__loading--line"></div>
-                        <div class="text-input__loading--line"></div>
-                    </div>
-                    <div id="description-wrapper">
-                        <div id="itemInformation" class="product-information">
-
-                        </div>
-                    </div>
-
-                    <div class="user-task">
-                        <h2 class="noBottomMargin" style="padding-left: 30px;">Reviews</h2>
-                        <div id="skeleton-review-wrapper" class="product-information" style="padding-top: 0px;">
+                <div class="column" >
+                    <div id="confirm-information-column">
+                        <h2 class="noBottomMargin" style="padding-left: 30px;">Product Information</h2>
+                        <div id="skeleton-description-wrapper" class="product-information">
                             <div class="text-input__loading--line"></div>
+                            <div class="text-input__loading--line"></div>
+                            <div class="text-input__loading--line"></div>
+                            <div class="text-input__loading--line"></div>
+                            <div class="text-input__loading--line"></div>
+                            </br>
+                            <div class="text-input__loading--line"></div>
+                            <div class="text-input__loading--line"></div>
+                            <div class="text-input__loading--line"></div>
+                            <div class="text-input__loading--line"></div>
+                            <div class="text-input__loading--line"></div>
+                            </br>
                             <div class="text-input__loading--line"></div>
                             <div class="text-input__loading--line"></div>
                         </div>
+                        <div id="description-wrapper">
+                            <div id="itemInformation" class="product-information">
 
-                        <div id="reviews" class="product-information">
-                            <div id="user-review">
-                                <div id="user-image">
-                                    <i class="qtm-font-icon qtm-icon-large qtm-icon-user" aria-hidden="true"></i>
-                                </div>
-                                    This IPhone X has been phenomenal. The speed at which it operates is Incredible. If you are questioning this buy, don't.
-                                    It's a wonderful deal. I've not had one issue thus far, and will most certainly update this review if I have one within the warranty period.
                             </div>
                         </div>
+
+                        <div class="user-task">
+                            <h2 class="noBottomMargin" style="padding-left: 30px;">Reviews</h2>
+                            <div id="skeleton-review-wrapper" class="product-information" style="padding-top: 0px;">
+                                <div class="text-input__loading--line"></div>
+                                <div class="text-input__loading--line"></div>
+                                <div class="text-input__loading--line"></div>
+                            </div>
+
+                            <div id="reviews" class="product-information">
+                                <div id="user-review">
+                                    <div id="user-image">
+                                        <i class="qtm-font-icon qtm-icon-large qtm-icon-user" aria-hidden="true"></i>
+                                    </div>
+                                    This IPhone X has been phenomenal. The speed at which it operates is Incredible. If you are questioning this buy, don't.
+                                    It's a wonderful deal. I've not had one issue thus far, and will most certainly update this review if I have one within the warranty period.
+                                </div>
+                            </div>
+                        </div>
+                        <button id="buy-button"  type="button" class="btn btn-primary" onclick="loadNextPage();">Buy</button>
                     </div>
-                    <button id="buy-button"  type="button" class="btn btn-primary" onclick="loadNextPage();">Buy</button> 
                 </div>
             </div>
         </div>
@@ -226,11 +234,13 @@
              *  t2 = Time when user clicked on buy button
             */
 
-            let t0, t1, t2;
+            let t0, t1, t2, allElementsLoaded, currDt, domDone;
             let selectedItem = localStorage.getItem("currentItem").split(",");
             let root = document.documentElement;
 
             window.addEventListener('DOMContentLoaded',() => {
+                t0 = performance.now();
+                domDone = Date.now();
                 loadContent();
                 fetchImages();
             });
@@ -246,6 +256,8 @@
 
             async function fetchImages() {
                 t1 = await loadImages();
+                currDt = Date.now();
+                allElementsLoaded = convertUTCIntoHuman(domDone, currDt);
                 document.getElementById("image-skeleton").style.display="none";
 
             }
@@ -255,7 +267,7 @@
             function loadNextPage(){
                 t2 = performance.now();
 
-                saveMetricsToLocalStorage([t0, t1, t2], "details");
+                saveMetricsToLocalStorage([t0, t1, t2, allElementsLoaded], "details");
                 redirectTo('personal.html');
             }
 
@@ -268,7 +280,7 @@
 
             function initializeView() {
 
-                console.log(selectedItem)
+                console.log(selectedItem);
 
                 let itemTitle = document.getElementById("itemTitle").innerHTML = selectedItem[0];
                 document.getElementById("itemPrice").innerHTML += selectedItem[1];

@@ -1,5 +1,7 @@
-<html>
-    <head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
         <title>Product Details - Performance Perception Test</title>
         <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css"/>
@@ -22,6 +24,8 @@
             #confirm-information-column{
                 padding-bottom: 30px;
             }
+
+
         </style>
     </head>
     <body onload="initializeView();">
@@ -98,7 +102,7 @@
                         </div>
                         <div class="panel panel-info panel-linked similar-product">
                             <img id="similar-product-image" class="product-image" src="../assets/iphone8-spgray-select-2018.png"/>
-                            <span id="similar-product-price"  class="product-price">iPhone 8 for $599</span>
+                            <span id="similar-product-price-2"  class="product-price">iPhone 8 for $599</span>
                         </div>
                     </div>
                 </div>
@@ -115,7 +119,7 @@
                                     <div id="user-image">
                                         <i class="qtm-font-icon qtm-icon-large qtm-icon-user" aria-hidden="true"></i>
                                     </div>
-                                    This IPhone X has been phenomenal. The speed at which it operates is Incredible. If you are questioning this buy, don’t. It’s a wonderful deal. I’ve not had one issue thus far, and will most certainly update this review if I have one within the warranty period.
+                                    This IPhone X has been phenomenal. The speed at which it operates is Incredible. If you are questioning this buy, don't. It's a wonderful deal. I've not had one issue thus far, and will most certainly update this review if I have one within the warranty period.
                                 </div>
                             </div>
                         </div>
@@ -137,18 +141,25 @@
              *  t2 = Time when user clicked on buy button
             */
 
-           let t0, t1, t2;
+           let t0, t1, t2, AllElementsLoaded;
 
             window.addEventListener('DOMContentLoaded', async function(event) {
+                //Measure performance
                 t0 = performance.now();
+                let domDone = Date.now();
+
+                // Load elements
                 loadDescription();
                 t1 = await loadImages();
+                let currDt = Date.now();
+                AllElementsLoaded = convertUTCIntoHuman(domDone, currDt);
+
             });
 
             function loadNextPage(){
                 t2 = performance.now();
 
-                saveMetricsToLocalStorage([t0, t1, t2], "details");
+                saveMetricsToLocalStorage([t0, t1, t2, AllElementsLoaded], "details");
                 redirectTo('personal.html');
             }
 
@@ -160,7 +171,6 @@
 
             function initializeView() {
                 let selectedItem = localStorage.getItem("currentItem").split(",");
-              
 
                 let itemTitle = document.getElementById("itemTitle").innerHTML = selectedItem[0];
                 let itemPrice = document.getElementById("itemPrice").innerHTML += selectedItem[1];
@@ -183,7 +193,8 @@
                 }else if(lowerTitle.indexOf("x") != -1){
                     itemInformation.innerHTML = localStorage.getItem("iPhoneX");
                     let userElements = document.getElementById("reviews");
-
+                    document.getElementsByClassName("product-price")[1].style.visibility="visible";
+                    document.getElementsByClassName("product-price")[2].style.visibility="visible";
                     setTimeout(() => {
                         userElements.style.display = "block";
                     }, detailsTimes.loadReviewsAndSuggestions);

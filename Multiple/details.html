@@ -1,5 +1,7 @@
-<html>
-    <head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
         <title>Product Details - Performance Perception Test</title>
         <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css"/>
@@ -25,11 +27,6 @@
                 display: none;
             }
 
-            .image-loading-skeleton {
-                top: 10px;
-                bottom: 20px;
-            }
-
             .product-price {
                 visibility: hidden;
                 animation: 1s fadeIn;
@@ -37,40 +34,9 @@
                 animation-delay: var(--similar-price-span);
             }
 
-            .text-input__loading--line:nth-of-type(even){
-                margin-left: 0px;
-                width: unset;
+            #confirm-information-column {
+                padding-bottom: 50px;
             }
-
-            .text-input__loading--line:nth-of-type(odd){
-                margin-left: 0px;
-            }
-
-            .text-input__loading--line{
-
-                min-width: 380px;
-                max-width: 600px;
-            }
-
-            #skeleton-description-wrapper {
-                padding: 30px;
-                padding-top: 0;
-                display: flex;
-                flex-direction: column;
-            }
-
-            .text-input__loading--line:nth-child(4n+1){
-                width: 5%;
-            }
-            .text-input__loading--line:nth-child(4n+2){
-                width: 80%;
-            }
-            .text-input__loading--line:nth-child(4n+3){
-                width: 100%;
-            }
-            .text-input__loading--line:nth-child(4n+4){
-                 width: 20%;
-             }
 
             #reviews {
                 display: none;
@@ -83,7 +49,12 @@
 
         </style>
     </head>
-    <body>
+    <body onload="hideSlider();">
+    <div id="slider" class="slider">
+        <div id="loading-zone">
+            <div class="loading-spinner loading-spinner-lg"></div>
+        </div>
+    </div>
         <div id="header">
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
@@ -140,14 +111,11 @@
                 <div class="panel-wrapper-confirm column" >
                     <div id="ExamplePanel5" class="panel panel-primary panel-linked">
                         <div class="panel-heading">
-
                             <h2 id="itemTitle" class="panel-title">Primary</h2>
                         </div>
                         <div class="panel-body">
-                            <div id="image-skeleton" class="image-loading-skeleton"></div>
                             <img id="itemImage" class="product-image" src=""/>
                         </div>
-
                         <div id="itemPrice" class="panel-footer">
                             
                         </div>
@@ -155,60 +123,39 @@
                     <h2 class="noBottomMargin" style="margin-bottom: 5px; margin-top: 35px;">Customers also bought</h2>
                     <div id="suggestions" class="user-task">
                         <div class="panel panel-info panel-linked similar-product">
-                            <div class="image-loading-skeleton small-skeleton"></div>
                             <img id="similar-product-image" class="product-image" src="../assets/iphone7-plus-silver-select-2016.png"/>
                             <span id="similar-product-price"  class="product-price">iPhone 7 for $449</span>
                         </div>
                         <div class="panel panel-info panel-linked similar-product">
-                            <div class="image-loading-skeleton small-skeleton"></div>
                             <img id="similar-product-image" class="product-image" src="../assets/iphone8-spgray-select-2018.png"/>
                             <span id="similar-product-price"  class="product-price">iPhone 8 for $599</span>
                         </div>
                     </div>
                 </div>
-                <div id="confirm-information-column" class="column" >
-                    <h2 class="noBottomMargin" style="padding-left: 30px;">Product Information</h2>
-                    <div id="skeleton-description-wrapper" class="product-information">
-                        <div class="text-input__loading--line"></div>
-                        <div class="text-input__loading--line"></div>
-                        <div class="text-input__loading--line"></div>
-                        <div class="text-input__loading--line"></div>
-                        <div class="text-input__loading--line"></div>
-                        </br>
-                        <div class="text-input__loading--line"></div>
-                        <div class="text-input__loading--line"></div>
-                        <div class="text-input__loading--line"></div>
-                        <div class="text-input__loading--line"></div>
-                        <div class="text-input__loading--line"></div>
-                        </br>
-                        <div class="text-input__loading--line"></div>
-                        <div class="text-input__loading--line"></div>
-                    </div>
-                    <div id="description-wrapper">
-                        <div id="itemInformation" class="product-information">
+                <div class="column" >
+                    <div id="confirm-information-column">
+                        <h2 class="noBottomMargin" style="padding-left: 30px;">Product Information</h2>
+                        <div id="description-wrapper">
+                            <div id="itemInformation" class="product-information">
 
-                        </div>
-                    </div>
-
-                    <div class="user-task">
-                        <h2 class="noBottomMargin" style="padding-left: 30px;">Reviews</h2>
-                        <div id="skeleton-review-wrapper" class="product-information" style="padding-top: 0px;">
-                            <div class="text-input__loading--line"></div>
-                            <div class="text-input__loading--line"></div>
-                            <div class="text-input__loading--line"></div>
-                        </div>
-
-                        <div id="reviews" class="product-information">
-                            <div id="user-review">
-                                <div id="user-image">
-                                    <i class="qtm-font-icon qtm-icon-large qtm-icon-user" aria-hidden="true"></i>
-                                </div>
-                                    This IPhone X has been phenomenal. The speed at which it operates is Incredible. If you are questioning this buy, don't.
-                                    It's a wonderful deal. I've not had one issue thus far, and will most certainly update this review if I have one within the warranty period.
                             </div>
                         </div>
+
+                        <div class="user-task">
+                            <h2 class="noBottomMargin" style="padding-left: 30px;">Reviews</h2>
+
+                            <div id="reviews" class="product-information">
+                                <div id="user-review">
+                                    <div id="user-image">
+                                        <i class="qtm-font-icon qtm-icon-large qtm-icon-user" aria-hidden="true"></i>
+                                    </div>
+                                    This IPhone X has been phenomenal. The speed at which it operates is Incredible. If you are questioning this buy, don't.
+                                    It's a wonderful deal. I've not had one issue thus far, and will most certainly update this review if I have one within the warranty period.
+                                </div>
+                            </div>
+                        </div>
+                        <button id="buy-button"  type="button" class="btn btn-primary" onclick="loadNextPage();">Buy</button>
                     </div>
-                    <button id="buy-button"  type="button" class="btn btn-primary" onclick="loadNextPage();">Buy</button> 
                 </div>
             </div>
         </div>
@@ -226,13 +173,16 @@
              *  t2 = Time when user clicked on buy button
             */
 
-            let t0, t1, t2;
+            let t0, t1, t2, AllElementsLoaded, domDone, currDt;
             let selectedItem = localStorage.getItem("currentItem").split(",");
             let root = document.documentElement;
 
             window.addEventListener('DOMContentLoaded',() => {
+                t0 = performance.now();
+                domDone = Date.now();
                 loadContent();
                 fetchImages();
+
             });
 
             function loadContent() {
@@ -246,22 +196,28 @@
 
             async function fetchImages() {
                 t1 = await loadImages();
-                document.getElementById("image-skeleton").style.display="none";
-
+                currDt = Date.now();
+                AllElementsLoaded = convertUTCIntoHuman(domDone, currDt);
             }
 
-
+            function hideSlider() {
+                console.time("hideSlider");
+                let slider = document.getElementById("slider");
+                setTimeout(() => {
+                    slider.classList.add("closed");
+                    console.timeEnd("hideSlider");
+                }, times.sliderHide)
+            }
 
             function loadNextPage(){
                 t2 = performance.now();
 
-                saveMetricsToLocalStorage([t0, t1, t2], "details");
+                saveMetricsToLocalStorage([t0, t1, t2, AllElementsLoaded], "details");
                 redirectTo('personal.html');
             }
 
             function loadDescription(){
                 setTimeout(() => {
-                    document.getElementById("skeleton-description-wrapper").style.display = "none";
                     document.getElementById("itemInformation").style.display = "flex";
                 }, detailsTimes.description + indexTimes.transitionToDetails);
             }
@@ -297,8 +253,7 @@
                     setTimeout(() => {
                         Array.from(prices).forEach(e => {
                             e.style.visibility="visible";
-                        })
-                        document.getElementById("skeleton-review-wrapper").style.display="none";
+                        });
                         hideImageSekeleton();
                         userElements.style.display = "block";
                     }, detailsTimes.loadReviewsAndSuggestions + indexTimes.transitionToDetails);

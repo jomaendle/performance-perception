@@ -7,29 +7,29 @@ let indexTimes = {
     textDelay: 1500,
     imagesDelay: 2500,
     transitionToDetails: 1000
-}
+};
 
 let detailsTimes = {
     loadReviewsAndSuggestions: 2000,
     description: 1000
-}
+};
 
 let personalTimes = {
     transitionToConfirm: 2000
-}
+};
 
 let confirmTimes = {
     transitionToCheckOut: 15000
-}
+};
 
 let times = {
     short: 1500,
     long: 4500,
-    sliderShow: 600,
-    sliderHide: 400,
-    sliderLoadShort: 500,
+    sliderShow: 400,
+    sliderHide: 2900,
+    sliderLoadShort: 700,
     sliderLoadLong: 3500 
-}
+};
 
 
 let iPhone7Text = "iPhone 7 features a 12MP camera with 4K video and optical image stabilization, a 4.7-inch Retina HD display with wide color gamut and 3D Touch, A10 Fusion chip for high performance, great battery life, and water and dust resistance. And with iOS 12 - the most advanced mobile operating system - you'll have powerful new tools that make iPhone more personal than ever.";
@@ -57,6 +57,7 @@ localStorage.setItem("iPhoneX", iPhoneXText);
  *      - [0]: Time when DOM is loaded
  *      - [1]: Time when content is fully available
  *      - [2]: Time when user clicked on buy button
+ *      - [3]: Time between DOM is fully rendered and all elements (images, text, etc) are fully loaded
  * personal.html: personalMeasures
  *      - [0]: Time when DOM is loaded
  *      - [1]: Time when user clicks "Confirm" button
@@ -85,7 +86,6 @@ function loadImages(){
     
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            console.log("here2")
             let images = document.getElementsByClassName("product-image");
             Array.from(images).forEach(element => {
                 element.style.visibility = "visible";
@@ -127,4 +127,9 @@ function hideTextSkeletonDisplay(){
     Array.from(loadingLines).forEach(element => {
         element.style.display = "none";
     });
+}
+
+function convertUTCIntoHuman(t1, t2){
+    let seconds = Math.abs(t1 - t2);
+    return seconds/1000;
 }

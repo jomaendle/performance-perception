@@ -310,21 +310,19 @@ html, body {
 
 .slider {
     overflow-y: hidden;
-    /* max-height: 550px; */
     background: #ffffff;
     border-bottom: solid 7px #0073e7;
-    /* width: 100px; */
     position: absolute;
     z-index: 99999;
-    /*animation: show 3s;*/
     max-height: 100vh;
     transition: max-height 0.5s ease-in;
     left: 0;
     top: 0;
     right: 0;
     bottom: 0;
-    z-index: 1;
 }
+
+
 
 .slider.closed {
 

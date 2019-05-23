@@ -1,5 +1,7 @@
-<html>
-    <head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
         <title>Marketplace  - Performance Perception Test</title>
         <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css"/>
@@ -158,7 +160,7 @@
 
             /**
              *  t0 = Time when DOM is loaded
-             *  t1 = Time when content is fully avilable
+             *  t1 = Time when content is fully available
              *  t2 = Time when user clicked on item
             */
 
@@ -172,8 +174,10 @@
 
             function handleItemClick(e) {
                 t2 = performance.now();
-             
-                let selectedItem = new Array();
+                let dt = Date.now();
+                localStorage.setItem("IndexItemClick", dt);
+
+                let selectedItem = [];
 
                 selectedItem.push(e.childNodes[1].innerText);
                 selectedItem.push(e.childNodes[3].innerText);

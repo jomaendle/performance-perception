@@ -1,5 +1,7 @@
-<html>
-    <head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
         <title>Product Details - Performance Perception Test</title>
         <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css"/>
@@ -135,7 +137,7 @@
                                     <div id="user-image">
                                         <i class="qtm-font-icon qtm-icon-large qtm-icon-user" aria-hidden="true"></i>
                                     </div>
-                                    This IPhone X has been phenomenal. The speed at which it operates is Incredible. If you are questioning this buy, don’t. It’s a wonderful deal. I’ve not had one issue thus far, and will most certainly update this review if I have one within the warranty period.
+                                    This IPhone X has been phenomenal. The speed at which it operates is Incredible. If you are questioning this buy, don't. It's a wonderful deal. I've not had one issue thus far, and will most certainly update this review if I have one within the warranty period.
                                 </div>
                             </div>
                         </div>
@@ -157,12 +159,17 @@
              *  t2 = Time when user clicked on buy button
             */
 
-           let t0, t1, t2;
+           let t0, t1, t2, allElementsLoaded;
 
-            window.addEventListener('DOMContentLoaded', async function(event) {
+            window.addEventListener('DOMContentLoaded', async function(event){
+                let domDone = Date.now();
                 t0 = performance.now();
+
                 loadDescription();
+
                 t1 = await loadImages();
+                let currDt = Date.now();
+                allElementsLoaded = convertUTCIntoHuman(domDone, currDt);
                 document.getElementById("img-loader").style.display="none";
 
             });
@@ -170,7 +177,7 @@
             function loadNextPage(){
                 t2 = performance.now();
 
-                saveMetricsToLocalStorage([t0, t1, t2], "details");
+                saveMetricsToLocalStorage([t0, t1, t2, allElementsLoaded], "details");
                 redirectTo('personal.html');
             }
 

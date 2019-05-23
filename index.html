@@ -1,5 +1,7 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
     <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
         <title>Home - Performance Perception Test</title>
         <link href="css/qtm-bs3.css" rel="stylesheet" type="text/css">
@@ -56,8 +58,8 @@
         <div id="main-content">
             <div id="browser-information">
                 <b style="text-align: center">Your Browser is not supported. </b> </br>
-                This web app is designed for the Blink render engine, currently used by <a href="https://www.google.com/chrome/" target="_blank">Google Chrome</a> and
-                <a href="https://www.microsoftedgeinsider.com/en-us/" target="_blank">Microsoft Edge</a>.
+                This web app is designed for the Blink or Gecko render engine, currently used by <a href="https://www.google.com/chrome/" target="_blank">Google Chrome</a>,
+                <a href="https://www.microsoftedgeinsider.com/en-us/" target="_blank">Microsoft Edge</a> and <a href="https://www.mozilla.org/de/firefox/new/" target="_blank">Mozilla Firefox</a>.
                 To ensure the intended behaviour, please execute this test in one of these browsers. </br>
             </div>
             <h1 class="noBottomMargin">Performance Perception Tests</h1>
@@ -67,22 +69,17 @@
                     Select one of the Ticket Shop implementations below. For further information about this project, have a look on the <a href="about.html">About</a> page.
                     <i>Thank you for participating. </i></br></br>
 
+                    <h3>Task</h3>
+                    The task is to buy an <i>iPhone X</i> in the web shop. The task is complete, when you arrive on a page with a questionnaire and the test results. </br></br>
+
                     <h3 style="margin-bottom: 0;"> Test Selection</h3>
-                    <a href="TicketShopBase/index.html">
-                        <button type="button" class="btn btn-primary">No Loading Enhancement</button>
-                    </a>
+                    <a href="TicketShopBase/index.html"><button type="button" class="btn btn-primary" onclick="setStorageItem(event);">No Loading Enhancement</button></a>
                     </br>
-                    <a href="Spinner/index.html">
-                        <button type="button" class="btn btn-primary">Loaders & Spinner</button>
-                    </a>
+                    <a href="Spinner/index.html"><button type="button" class="btn btn-primary" onclick="setStorageItem(event);">Loaders & Spinner</button></a>
                     </br>
-                    <a href="SkeletonScreen/index.html">
-                        <button type="button" class="btn btn-primary">Skeleton Screens</button>
-                    </a>
+                    <a href="SkeletonScreen/index.html"><button type="button" class="btn btn-primary" onclick="setStorageItem(event);">Skeleton Screens</button></a>
                     </br>
-                    <a href="Multiple/index.html">
-                        <button type="button" class="btn btn-primary">Multiple Techniques</button>
-                    </a>
+                    <a href="Multiple/index.html"><button type="button" class="btn btn-primary" onclick="setStorageItem(event);">Multiple Techniques</button></a>
                 </div>
                 <span id="footer-span">&copy; 2019 Micro Focus. Only for testing purposes. </span>
             </div>
@@ -90,10 +87,15 @@
     <script src="js/BrowserDetetction.js"></script>
     <script>
         let isChrome = localStorage.getItem("isChrome");
+        let isFirefox = localStorage.getItem("isFirefox");
         console.log(isChrome);
-        if(isChrome === "true"){
+        if(isChrome === "true" || isFirefox === "true" ){
             document.getElementById("browser-information").style.display="none";
         }
+        function setStorageItem(event) {
+            localStorage.setItem("test-version", event.target.innerHTML);
+        }
+
     </script>
     </body>
 </html>

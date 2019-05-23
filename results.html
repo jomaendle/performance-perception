@@ -1,5 +1,7 @@
-<html>
-    <head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
         <title>Results - Performance Perception Test</title>
         <link href="css/qtm-bs3.css" rel="stylesheet" type="text/css">
@@ -35,17 +37,28 @@
             }
 
             </style>
+        <script type="text/javascript" src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js"></script>
+        <script type="text/javascript">
+            (function(){
+                emailjs.init("user_12bqhewcfXv7VRJiq5t4n");
+            })();
+        </script>
     </head>
-    <body>
+    <body onload="send();">
         <div id="main-content">
             <h1 class="noBottomMargin">Performance Perception Test Results</h1>
             <div class="panel">
                 <div class="panel-body">
-                   Below are the technical results of the test. Please copy them into a textfile and send them to
-                   <a href="mailto: johannes.maendle@microfocus.com">Johannes Maendle</a>.
-                   <p id="results">
+                    <div>
+                        <h2>Questionnaire</h2>
+                        Please take a second to answer the following 6 questions in order to better understand your experience.
+                        </br>
+                        <iframe style="margin-top: 10px;" width="640px" height= "480px" src= "https://forms.office.com/Pages/ResponsePage.aspx?id=PIFrheUWpUmF7G8IHhO1Jwg5OUvBdGJOtjn2WRGZ2X1URDhXNTcwSVJJUjlXTjRIUzVVTlVHVTg1Ui4u&embed=true" frameborder= "0" marginwidth= "0" marginheight= "0" style= "border: none; max-width:100%; max-height:100vh" allowfullscreen webkitallowfullscreen mozallowfullscreen msallowfullscreen> </iframe>
+                    </div>
+                    <h2>Results</h2>
+                    <p id="results">
 
-                   </p>
+                    </p>
                    <a href="index.html">
                        <button type="button" class="btn btn-primary">Back to main selection</button>
                    </a>
@@ -54,14 +67,38 @@
         </div>
         <script>
             let pages = ["index", "details", "personal", "confirm", "checkout"];
+            let results;
 
-            document.getElementById("results");
-            pages.forEach((e) => {
-                let arr =  localStorage.getItem(e+"Measures").split(",");
-                    results.innerHTML += e+ ": " + arr + "</br>"
-               
-            })
+            function send() {
+                pages.forEach((e) => {
+                    let arr =  localStorage.getItem(e+"Measures").split(",");
+                    results += e+ ": " + arr + ";"
+                });
 
+                sendMail(results);
+            }
+
+            function  sendMail(results) {
+                let res = document.getElementById("results");
+                let data = localStorage.getItem("test-version") + ";" + results;
+
+                let templateParams = {
+                    "to_name": 'Johannes',
+                    "message_html": data
+                };
+
+                emailjs.send('gmail', 'template_r4EtWGwl', templateParams)
+                    .then(function(response) {
+                        console.log('SUCCESS!', response.status, response.text);
+                        res.innerHTML = '<i style="margin-right: 10px;" class="qtm-font-icon qtm-icon-large qtm-icon-normal" aria-hidden="true"></i>' + "Your technical results have been successfully transmitted to <a href=\'mailto: johannes.maendle@microfocus.com\'>Johannes Maendle</a>."
+
+                    }, function(error) {
+                        res.innerHTML = "There occurred an error while sending your results... </br> " +
+                            "Please send the following values manually to Johannes Maendle by clicking <a href=\'mailto: johannes.maendle@microfocus.com\'>here</a>." +
+                                "</br>" + data;
+                        console.log('FAILED...', error);
+                    });
+            }
 
         </script>
     </body>

@@ -27,4 +27,10 @@ if (isIOSChrome) {
 } else {
     // not Google Chrome
     localStorage.setItem("isChrome", "false");
+
+    if (navigator.userAgent.indexOf("Firefox") > 0) {
+        localStorage.setItem("isFirefox", "true");
+    }else {
+        localStorage.setItem("isFirefox", "false");
+    }
 }

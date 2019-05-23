@@ -1,5 +1,7 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
     <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
         <title>Marketplace  - Performance Perception Test</title>
         <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css"/>
@@ -26,6 +28,8 @@
         </style>
     </head>
     <body>
+        <div id="slider" class="slider closed">
+        </div>
         <div id="header">
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
@@ -181,7 +185,7 @@
                 t0 = performance.now();
 
                 let root = document.documentElement;
-                root.style.setProperty("--aniamtion-text-Delay", indexTimes.textDelay + "ms")
+                root.style.setProperty("--aniamtion-text-Delay", indexTimes.textDelay + "ms");
                 root.style.setProperty("--aniamtion-image-Delay", (indexTimes.textDelay + indexTimes.imagesDelay) + "ms");
 
                 loadText();
@@ -198,11 +202,16 @@
                 selectedItem.push(e.childNodes[3].childNodes[3].src);
 
                 localStorage.setItem("currentItem", selectedItem);
-
-
                 saveMetricsToLocalStorage([t0, t1, t2], "index");
-                redirectTo("details.html");
 
+                setTimeout(() => {
+                    let slider = document.getElementById("slider");
+                    slider.classList.remove("closed");
+
+                    setTimeout(() => {
+                        redirectTo("details.html");
+                    }, times.sliderLoadShort)
+                }, times.sliderShow);
             }
 
 
